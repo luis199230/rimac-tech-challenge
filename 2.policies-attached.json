@@ -1,0 +1,24 @@
+{
+  "AttachedManagedPolicies": [
+    {
+      "PolicyName": "AWSLambdaFullAccess",
+      "PolicyArn": "arn:aws:iam::aws:policy/AWSLambdaFullAccess"
+    },
+    {
+      "PolicyName": "IAMFullAccess",
+      "PolicyArn": "arn:aws:iam::aws:policy/IAMFullAccess"
+    },
+    {
+      "PolicyName": "AmazonDynamoDBFullAccess",
+      "PolicyArn": "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+    },
+    {
+      "PolicyName": "AmazonAPIGatewayAdministrator",
+      "PolicyArn": "arn:aws:iam::aws:policy/AmazonAPIGatewayAdministrator"
+    },
+    {
+      "PolicyName": "AWSCloudFormationFullAccess",
+      "PolicyArn": "arn:aws:iam::aws:policy/AWSCloudFormationFullAccess"
+    }
+  ]
+}
