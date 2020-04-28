@@ -48,6 +48,8 @@ sls deploy
 
 You can test with my Postman, don't forget configure the environment with base_url for works correctly.
 
+PD. base_url = https://snb7w1zav1.execute-api.us-east-1.amazonaws.com
+
 ```sh
 https://www.getpostman.com/collections/d11bb209ada57cd2cac4
 ```
