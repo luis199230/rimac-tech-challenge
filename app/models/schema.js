@@ -2,7 +2,7 @@ const Base = require('./base');
 
 const options = {
     table: process.env.SCHEMA_TABLE,
-    fields: ['field', 'entity'],
+    fields: ['field', 'translated', 'entity'],
     key: 'id',
     dateFields: [
         'created_at',

@@ -3,7 +3,7 @@ const AWS = require('aws-sdk');
 AWS.config.setPromisesDependency(require('bluebird'));
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 
-let mapFiltersDynamo = (filters, table, softDeletes) => {
+let mapFiltersDynamo = (filters, table) => {
     let params = {TableName: table};
 
     for (const i in filters) {
@@ -53,8 +53,18 @@ class Base {
         };
     }
 
+    formatDate() {
+        let dt = new Date();
+        return `${dt.getFullYear().toString().padStart(4, '0')}-${
+            (dt.getMonth()+1).toString().padStart(2, '0')}-${
+            dt.getDate().toString().padStart(2, '0')} ${
+            dt.getHours().toString().padStart(2, '0')}:${
+            dt.getMinutes().toString().padStart(2, '0')}:${
+            dt.getSeconds().toString().padStart(2, '0')}`;
+    }
+
     getDateFields() {
-        const timestamp = new Date().getTime();
+        const timestamp = this.formatDate();
         let data = {};
         this.options.dateFields.forEach(d => {
             if (d !== this.options.softDeletes) {
@@ -72,14 +82,13 @@ class Base {
 
     async create(obj) {
         const params = this.hydrate(obj);
-        console.log(params);
         return await dynamoDB.put({
             TableName: this.options.table, Item: params,
         }).promise();
     }
 
     async all(filters) {
-        let params = mapFiltersDynamo(filters, this.options.table, this.options.softDeletes);
+        let params = mapFiltersDynamo(filters, this.options.table);
         return await dynamoDB.scan(params).promise();
     }
 }

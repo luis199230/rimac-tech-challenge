@@ -4,6 +4,6 @@ require('./config');
 const startWarsController = require('./controllers/starWars');
 
 module.exports = {
-    listSchemas: startWarsController.listSchemas,
-    listCharacters: startWarsController.listCharacters
+    createSchemas: startWarsController.createSchemas,
+    listSchema: startWarsController.listSchema
 };

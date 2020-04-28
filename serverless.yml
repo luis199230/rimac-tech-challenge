@@ -13,10 +13,11 @@ provider:
   stage: dev
   region: us-east-1
 
-  cfnRole: arn:aws:iam::975937631079:role/devops
+  cfnRole: arn:aws:iam::${self:provider.environment.ACCOUNT_ID}:role/devops
 
   # Environment variables
   environment:
+    ACCOUNT_ID: 975937631079
     SCHEMA_TABLE: ${self:service}-${self:provider.stage}-schema
     API_URL: https://swapi.py4e.com
 
@@ -35,21 +36,25 @@ provider:
           - Arn
 
 functions:
-  listSchemas:
-    handler: app/app.listSchemas
-    description: Collect the fields of third API StarWars for translate key in others endpoints.
+  createSchemas:
+    handler: app/app.createSchemas
+    description: Collect the fields of third API StarWars, translate keys and store in dynamoDB.
     events:
       - http:
-          path: schemas
+          path: api/schemas
           method: post
 
-  listCharacters:
-    handler: app/app.listCharacters
+  listSchema:
+    handler: app/app.listSchema
     description: Show list of characters.
     events:
       - http:
-          path: people
+          path: api/{schema}
           method: get
+          request:
+            parameters:
+              paths:
+                schema: true
 
 resources:
   - ${file(resources/dynamo.yml)}
