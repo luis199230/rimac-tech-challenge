@@ -17,7 +17,7 @@ provider:
 
   # Environment variables
   environment:
-    ACCOUNT_ID: 975937631079
+    ACCOUNT_ID: {CHANGE_FOR_YOUR_ACCOUNT_ID}
     SCHEMA_TABLE: ${self:service}-${self:provider.stage}-schema
     API_URL: https://swapi.py4e.com
 
