@@ -2,7 +2,7 @@
   "name": "rimac-tech-challenge",
   "version": "1.0.0",
   "dependencies": {
-    "aws-sdk": "^2.663.0",
+    "aws-sdk": "^2.814.0",
     "bluebird": "^3.7.2",
     "node-fetch": "^2.6.0",
     "translatte": "^2.5.6",
